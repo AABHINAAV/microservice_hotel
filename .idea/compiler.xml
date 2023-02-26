@@ -9,12 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="UserMS" />
         <module name="RatingMS" />
+        <module name="ServiceRegistry" />
         <module name="HotelMS" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="HotelMS" target="17" />
       <module name="RatingMS" target="17" />
+      <module name="ServiceRegistry" target="17" />
       <module name="UserMS" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -22,6 +24,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="HotelMS" options="-parameters" />
       <module name="RatingMS" options="-parameters" />
+      <module name="ServiceRegistry" options="-parameters" />
       <module name="UserMS" options="-parameters" />
     </option>
   </component>

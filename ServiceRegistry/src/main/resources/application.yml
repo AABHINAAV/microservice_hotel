@@ -1,0 +1,9 @@
+server:
+  port: 9700
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
