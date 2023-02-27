@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: User_MS
+    name: USER-SERVICE
 
   datasource:
     url: jdbc:mysql://localhost:3306/hotel_user_ms

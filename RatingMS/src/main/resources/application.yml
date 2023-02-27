@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: Rating_MS
+    name: RATING-SERVICE
 
   data:
     mongodb:

@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
         );
 
         Rating[] allRatingsArray = this.restTemplate.getForObject(
-                "http://localhost:9300/ratings/getAllRatingByUserId/" + userId,
+                "http://RATING-SERVICE/ratings/getAllRatingByUserId/" + userId,
                 Rating[].class
         );
 
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
                 rating -> {
                     String hotelId = rating.getHotelId();
                     Hotel hotelDetails = this.restTemplate.getForObject(
-                            "http://localhost:9200/hotels/getHotelByHotelId/" + hotelId,
+                            "http://HOTEL-SERVICE/hotels/getHotelByHotelId/" + hotelId,
                             Hotel.class
                     );
 
