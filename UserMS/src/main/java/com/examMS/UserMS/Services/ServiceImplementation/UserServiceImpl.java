@@ -4,13 +4,14 @@ import com.examMS.UserMS.Entities.Hotel;
 import com.examMS.UserMS.Entities.Rating;
 import com.examMS.UserMS.Entities.User;
 import com.examMS.UserMS.Exceptions.ResourceNotFoundException;
+import com.examMS.UserMS.External_Services.HotelServiceInterface;
+import com.examMS.UserMS.External_Services.RatingServiceInterface;
 import com.examMS.UserMS.Repositories.UserRepository;
 import com.examMS.UserMS.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -24,6 +25,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private RatingServiceInterface ratingServiceInterface;
+
+    @Autowired
+    private HotelServiceInterface hotelServiceInterface;
 
     @Override
     public User createUser(User user) {
@@ -43,20 +50,34 @@ public class UserServiceImpl implements UserService {
                 () -> new ResourceNotFoundException("No such user present with user id : " + userId)
         );
 
-        Rating[] allRatingsArray = this.restTemplate.getForObject(
-                "http://RATING-SERVICE/ratings/getAllRatingByUserId/" + userId,
-                Rating[].class
-        );
-
-        List<Rating> allRatings = Arrays.stream(allRatingsArray).toList();
+//
+//
+//
+//        Rating[] allRatingsArray = this.restTemplate.getForObject(
+//                "http://RATING-SERVICE/ratings/getAllRatingByUserId/" + userId,
+//                Rating[].class
+//        );
+//
+//        List<Rating> allRatings = Arrays.stream(allRatingsArray).toList();
+//
+//
+//
+        List<Rating> allRatings = this.ratingServiceInterface.getAllRatingByUserId(userId);
 
         List<Rating> ratings =  allRatings.stream().map(
                 rating -> {
                     String hotelId = rating.getHotelId();
-                    Hotel hotelDetails = this.restTemplate.getForObject(
-                            "http://HOTEL-SERVICE/hotels/getHotelByHotelId/" + hotelId,
-                            Hotel.class
-                    );
+//
+//
+//
+//                    Hotel hotelDetails = this.restTemplate.getForObject(
+//                            "http://HOTEL-SERVICE/hotels/getHotelByHotelId/" + hotelId,
+//                            Hotel.class
+//                    );
+//
+//
+//
+                    Hotel hotelDetails = this.hotelServiceInterface.getHotelByHotelId(hotelId);
 
                     rating.setHotel(hotelDetails);
 
