@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ApiGateWay/ApiGateWay.iml" filepath="$PROJECT_DIR$/ApiGateWay/ApiGateWay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ConfigServer/ConfigServer.iml" filepath="$PROJECT_DIR$/ConfigServer/ConfigServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Exam_MS.iml" filepath="$PROJECT_DIR$/.idea/Exam_MS.iml" />
       <module fileurl="file://$PROJECT_DIR$/HotelMS/HotelMS.iml" filepath="$PROJECT_DIR$/HotelMS/HotelMS.iml" />
       <module fileurl="file://$PROJECT_DIR$/RatingMS/RatingMS.iml" filepath="$PROJECT_DIR$/RatingMS/RatingMS.iml" />

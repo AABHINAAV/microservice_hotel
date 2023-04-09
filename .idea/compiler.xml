@@ -10,12 +10,14 @@
         <module name="UserMS" />
         <module name="RatingMS" />
         <module name="ServiceRegistry" />
+        <module name="ConfigServer" />
         <module name="HotelMS" />
         <module name="ApiGateWay" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ApiGateWay" target="17" />
+      <module name="ConfigServer" target="17" />
       <module name="GateWay" target="17" />
       <module name="HotelMS" target="17" />
       <module name="RatingMS" target="17" />
@@ -26,6 +28,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ApiGateWay" options="-parameters" />
+      <module name="ConfigServer" options="-parameters" />
       <module name="GateWay" options="-parameters" />
       <module name="HotelMS" options="-parameters" />
       <module name="RatingMS" options="-parameters" />
