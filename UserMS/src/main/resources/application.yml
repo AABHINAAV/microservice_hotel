@@ -66,3 +66,10 @@ resilience4j:
       getUserCallsRatingAndHotel:
         max-attempts: 3
         wait-duration: 3s
+
+  rateLimiter:
+    instances:
+      getUserCallsRatingAndHotel:
+        limitForPeriod: 2         # time period me is se jada no of request nahi lagai jaegi
+        limitRefreshPeriod: 1s    # max time period to making requests
+        timeoutDuration: 100ns    # agr itne time me request ka response aya to theek ni to thread us reqest ko hata dega
