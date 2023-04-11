@@ -31,3 +31,13 @@ eureka:
     fetch-registry: true
   service-url:
     defaultZone: http://localhost:8761/eureka
+
+
+################## okta configurations for Api Gateway
+okta:
+  oauth2:
+    issuer: https://dev-63184642.okta.com/oauth2/default
+    audience: api://default
+    client-id: 0oa91q9sv5HLWNEBA5d7
+    client-secret: n9XfQPWsly4vwZdCrJ9G-Q-cmmzob6y9eJ3u7Xjt
+    scope: openid, profile, email, offline_access
