@@ -23,6 +23,25 @@ spring:
   config:
     import: optional:configserver:http://localhost:8900
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-63184642.okta.com/oauth2/default
+      client:
+        registration:
+          my-internal-client:
+            provider: okta
+            authorization-grant-type: client_credentials
+            scope: internal
+            client-id: 0oa91q9sv5HLWNEBA5d7
+            client-secret: n9XfQPWsly4vwZdCrJ9G-Q-cmmzob6y9eJ3u7Xjt
+
+        provider:
+          okta:
+            issuer-uri: https://dev-63184642.okta.com/oauth2/default
+
+
 
 #eureka:
 #  instance:
@@ -73,3 +92,10 @@ resilience4j:
         limitForPeriod: 2         # time period me is se jada no of request nahi lagai jaegi
         limitRefreshPeriod: 1s    # max time period to making requests
         timeoutDuration: 100ns    # agr itne time me request ka response aya to theek ni to thread us reqest ko hata dega
+
+
+
+okta:
+  oauth2:
+    issuer: https://dev-63184642.okta.com/oauth2/default
+    audience: api://default
