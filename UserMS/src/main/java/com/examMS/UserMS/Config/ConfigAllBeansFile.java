@@ -1,8 +1,12 @@
 package com.examMS.UserMS.Config;
 
+import com.examMS.UserMS.Config.Interceptors.RestTemplateInterceptor;
+import com.netflix.discovery.converters.Auto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProvider;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProviderBuilder;
@@ -11,13 +15,31 @@ import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizedCli
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Configuration
 public class ConfigAllBeansFile {
+
+    @Autowired
+    private ClientRegistrationRepository clientRegistrationRepository;
+
+    @Autowired
+    private OAuth2AuthorizedClientRepository oAuth2AuthorizedClientRepository;
 
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate() {
-        return new RestTemplate();
+        RestTemplate restTemplate = new RestTemplate();
+
+        List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
+        interceptors.add(new RestTemplateInterceptor(oAuth2AuthorizedClientManager(
+                clientRegistrationRepository,
+                oAuth2AuthorizedClientRepository
+        )));
+        restTemplate.setInterceptors(interceptors);
+
+        return restTemplate;
     }
 
     @Bean
