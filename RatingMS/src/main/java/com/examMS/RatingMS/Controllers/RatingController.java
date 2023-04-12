@@ -5,6 +5,7 @@ import com.examMS.RatingMS.Services.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class RatingController {
     @Autowired
     private RatingService ratingService;
 
+    @PreAuthorize("hasAuthority('Admin')")
     @PostMapping("/createRating")
     public ResponseEntity<Rating> createRating(@RequestBody Rating rating) {
         Rating res = this.ratingService.createRating(rating);
@@ -34,6 +36,7 @@ public class RatingController {
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAuthority('Admin') || hasAuthority('SCOPE_internal')")
     @GetMapping("/getAllRatingByUserId/{userId}")
     public ResponseEntity<List<Rating>> getAllRatingByUserId(@PathVariable("userId") String userId) {
         List<Rating> allRatingByUserId = this.ratingService.getAllRatingByUserId(userId);
